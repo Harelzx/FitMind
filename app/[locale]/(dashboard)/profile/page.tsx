@@ -104,7 +104,7 @@ export default function ProfilePage() {
     const supabase = createClient()
     
     try {
-      const age = editForm.dateOfBirth ? calculateAge(editForm.dateOfBirth) : profile.age
+      const age = editForm.dateOfBirth ? calculateAge(editForm.dateOfBirth) : (profile.age || 25)
       
       // Calculate new weight loss plan based on selected pace
       let weeklyWeightLoss = 0.75 // default moderate
@@ -447,7 +447,7 @@ export default function ProfilePage() {
                   {(() => {
                     // Calculate new calories based on current form data
                     try {
-                      const age = editForm.dateOfBirth ? calculateAge(editForm.dateOfBirth) : profile.age
+                      const age = editForm.dateOfBirth ? calculateAge(editForm.dateOfBirth) : (profile.age || 25)
                       const weightLossPlan = calculateWeightLossPlan({
                         currentWeight: parseFloat(editForm.currentWeight),
                         targetWeight: parseFloat(editForm.targetWeight),

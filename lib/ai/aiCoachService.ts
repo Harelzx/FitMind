@@ -160,7 +160,7 @@ export async function getCoachingContext(userId: string): Promise<CoachingContex
   if (streakDays < 7) {
     recentChallenges.push('מעקב לא עקבי')
   }
-  if (trendAnalysis && trendAnalysis.trend === 'declining') {
+  if (trendAnalysis && trendAnalysis.realChange > 0) {
     recentChallenges.push('מגמת ירידה מאטה')
   }
   
