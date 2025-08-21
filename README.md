@@ -1,4 +1,4 @@
-# FitMind - מערכת מעקב ירידה במשקל חכמה
+# FitMind - Smart Weight Loss Tracking System
 
 ![Hebrew](https://img.shields.io/badge/Language-Hebrew%20First-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-14.2.5-black)
@@ -6,149 +6,149 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0-38B2AC)
 
-FitMind הוא אפליקציית ווב מתקדמת למעקב ירידה במשקל עם תמיכה מלאה בעברית וממשק RTL. האפליקציה מציעה מעקב חכם אחר המשקל, תובנות מתקדמות ומאמן תזונה מותאם אישית מבוסס בינה מלאכותית.
+FitMind is an advanced web application for weight loss tracking with full Hebrew support and RTL interface. The app offers smart weight monitoring, advanced insights, and a personalized AI nutrition coach.
 
-## ✨ תכונות עיקריות
+## ✨ Key Features
 
-### 📊 מעקב משקל חכם
-- מעקב יומי אחר המשקל עם גרפים אינטראקטיביים
-- חישוב אוטומטי של BMI ומדדי בריאות
-- ניתוח מגמות משקל עם סינון רעש ותנודות יומיות
-- מעקב אחר מדדי נוספים: מצב רוח, אנרגיה, שינה ושתיית מים
+### 📊 Smart Weight Tracking
+- Daily weight monitoring with interactive charts
+- Automatic BMI and health metrics calculation
+- Weight trend analysis with noise filtering and daily fluctuation handling
+- Track additional metrics: mood, energy, sleep, and water intake
 
-### 🎯 תכנון מטרות מתקדם
-- חישוב יעדי ירידה במשקל על בסיס מדעי
-- שלושה קצבי ירידה: איטי (0.5 ק"ג/שבוע), בינוני (0.75 ק"ג/שבוע), מהיר (1.0 ק"ג/שבוע)
-- חישוב קלוריות יומיות מותאם אישית עם פירוט מלא (BMR, TDEE, גירעון קלורי)
-- ניהול פרופיל מתקדם עם אפשרות עדכון מטרות
+### 🎯 Advanced Goal Planning
+- Science-based weight loss goal calculation
+- Three weight loss paces: slow (0.5 kg/week), moderate (0.75 kg/week), fast (1.0 kg/week)
+- Personalized daily calorie calculation with full breakdown (BMR, TDEE, caloric deficit)
+- Advanced profile management with goal update capabilities
 
-### 🤖 מאמן תזונה מבוסס בינה מלאכותית
-- מאמן אישי דובר עברית עם גישה מלאה לנתונים האישיים
-- מתן עצות תזונה מותאמות אישית על בסיס ההתקדמות
-- ניתוח הישגים ואתגרים עם המלצות מעשיות
-- שמירת היסטוריית שיחות עם הבוט
+### 🤖 AI-Powered Nutrition Coach
+- Hebrew-speaking personal coach with full access to personal data
+- Personalized nutrition advice based on progress
+- Achievement and challenge analysis with practical recommendations
+- Conversation history storage with the bot
 
-### 📈 תובנות והתקדמות
-- ניתוח מתקדם של מגמת ירידה במשקל
-- חישוב התקדמות לעומת מטרות אישיות
-- מדדי הצלחה: ימי מעקב, רצפי ימים, ממוצעים שבועיים
-- תחזיות זמן הגעה למטרה על בסיס ביצועים נוכחיים
+### 📈 Insights and Progress
+- Advanced weight loss trend analysis
+- Progress calculation against personal goals
+- Success metrics: tracking days, streaks, weekly averages
+- Goal completion time predictions based on current performance
 
-### 🔐 אבטחה ופרטיות
-- אימות מאובטח עם Supabase Auth
-- תמיכה בכניסה עם Google OAuth (בהכנה)
-- Row Level Security (RLS) - כל משתמש רואה רק את הנתונים שלו
-- הצפנת נתונים וגיבוי אוטומטי
+### 🔐 Security and Privacy
+- Secure authentication with Supabase Auth
+- Google OAuth support (in preparation)
+- Row Level Security (RLS) - each user sees only their data
+- Data encryption and automatic backup
 
-## 🚀 טכנולוגיות
+## 🚀 Technologies
 
-- **Frontend**: Next.js 14.2.5 עם App Router
+- **Frontend**: Next.js 14.2.5 with App Router
 - **Styling**: Tailwind CSS + Shadcn/ui components
 - **Database**: Supabase (PostgreSQL)
 - **Authentication**: Supabase Auth
-- **Internationalization**: next-intl (עברית/אנגלית)
+- **Internationalization**: next-intl (Hebrew/English)
 - **Charts**: Recharts
-- **AI Integration**: מוכן לאינטגרציה עם OpenAI/Claude
+- **AI Integration**: Ready for OpenAI/Claude integration
 
-## 📦 התקנה והרצה
+## 📦 Installation and Setup
 
-### דרישות מקדימות
+### Prerequisites
 - Node.js 18+ 
-- npm או yarn
-- חשבון Supabase
+- npm or yarn
+- Supabase account
 
-### שלבי התקנה
+### Installation Steps
 
-1. **שכפול הפרויקט**
+1. **Clone the project**
 ```bash
 git clone https://github.com/Harelzx/FitMind.git
 cd FitMind
 ```
 
-2. **התקנת חבילות**
+2. **Install dependencies**
 ```bash
 npm install
 ```
 
-3. **הגדרת משתני סביבה**
-צור קובץ `.env.local` והוסף:
+3. **Setup environment variables**
+Create a `.env.local` file and add:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-4. **הגדרת בסיס הנתונים**
-העלה את הסכמה מ `supabase/minimal-schema.sql` לפרויקט Supabase שלך:
-- היכנס ל-Supabase Dashboard
-- עבור ל-SQL Editor
-- הרץ את כל התוכן מהקובץ
+4. **Setup database**
+Upload the schema from `supabase/minimal-schema.sql` to your Supabase project:
+- Go to Supabase Dashboard
+- Navigate to SQL Editor
+- Run all content from the file
 
-5. **הרצת הפרויקט**
+5. **Run the project**
 ```bash
 npm run dev
 ```
 
-האפליקציה תהיה זמינה בכתובת: `http://localhost:3000`
+The application will be available at: `http://localhost:3000`
 
-## 🗄️ מבנה הפרויקט
+## 🗄️ Project Structure
 
 ```
 FitMind/
-├── app/[locale]/              # Next.js App Router עם תמיכה רב-לשונית
-│   ├── (auth)/               # דפי אימות (כניסה, הרשמה)
-│   ├── (dashboard)/          # דפים מוגנים
-│   │   ├── dashboard/        # עמוד בית עם סקירה כללית
-│   │   ├── tracking/         # מעקב משקל יומי
-│   │   ├── insights/         # תובנות וניתוחים
-│   │   ├── ai-coach/         # מאמן בינה מלאכותית
-│   │   └── profile/          # ניהול פרופיל אישי
-│   └── complete-profile/     # השלמת פרופיל למשתמשים חדשים
+├── app/[locale]/              # Next.js App Router with internationalization
+│   ├── (auth)/               # Authentication pages (login, register)
+│   ├── (dashboard)/          # Protected pages
+│   │   ├── dashboard/        # Home page with overview
+│   │   ├── tracking/         # Daily weight tracking
+│   │   ├── insights/         # Insights and analytics
+│   │   ├── ai-coach/         # AI nutrition coach
+│   │   └── profile/          # Personal profile management
+│   └── complete-profile/     # Profile completion for new users
 ├── components/
-│   ├── ui/                   # רכיבי Shadcn/ui
-│   └── charts/               # רכיבי גרפים מותאמים
+│   ├── ui/                   # Shadcn/ui components
+│   └── charts/               # Custom chart components
 ├── lib/
-│   ├── supabase/             # הגדרות Supabase
-│   ├── calculations/         # אלגוריתמי חישוב משקל ותזונה
-│   └── ai/                   # שירותי בינה מלאכותית
+│   ├── supabase/             # Supabase configuration
+│   ├── calculations/         # Weight and nutrition calculation algorithms
+│   └── ai/                   # AI services
 ├── supabase/
-│   ├── minimal-schema.sql    # סכמת בסיס הנתונים
-│   └── migrations/           # מיגרציות נוספות
-└── messages/                 # קבצי תרגום (עברית/אנגלית)
+│   ├── minimal-schema.sql    # Database schema
+│   └── migrations/           # Additional migrations
+└── messages/                 # Translation files (Hebrew/English)
 ```
 
-## 🎨 עיצוב ונגישות
+## 🎨 Design and Accessibility
 
-- **עברית First**: האפליקציה מותאמת לקוראי עברית עם תמיכה מלאה ב-RTL
-- **Responsive Design**: מותאמת לכל המכשירים (מובייל, טאבלט, דסקטופ)
-- **Dark Mode Support**: תמיכה במצב לילה (בהכנה)
-- **Accessibility**: עמידה בתקני WCAG לנגישות
+- **Hebrew First**: Application optimized for Hebrew readers with full RTL support
+- **Responsive Design**: Adapted for all devices (mobile, tablet, desktop)
+- **Dark Mode Support**: Night mode support (in preparation)
+- **Accessibility**: WCAG compliance standards
 
-## 🔧 הגדרות נוספות
+## 🔧 Additional Configuration
 
 ### Google OAuth
-להפעלת כניסה עם Google:
-1. הגדר OAuth בגוגל Cloud Console
-2. הוסף את פרטי האימות ב-Supabase Dashboard
-3. עדכן את הגדרות האימות באפליקציה
+To enable Google login:
+1. Configure OAuth in Google Cloud Console
+2. Add authentication details in Supabase Dashboard
+3. Update authentication settings in the application
 
-### בינה מלאכותית
-להפעלת המאמן האישי:
-1. הוסף `OPENAI_API_KEY` או `ANTHROPIC_API_KEY` ל-.env.local
-2. עדכן את הקובץ `lib/ai/aiCoachService.ts` עם ספק הבחירה
-3. המאמן יתחיל לפעול אוטומטית
+### AI Integration
+To activate the personal coach:
+1. Add `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` to .env.local
+2. Update the file `lib/ai/aiCoachService.ts` with your chosen provider
+3. The coach will start working automatically
 
-## 📊 מבנה בסיס הנתונים
+## 📊 Database Structure
 
-הפרויקט משתמש בטבלאות הבאות:
-- `profiles` - פרופילי משתמשים עם מטרות ויעדים
-- `weight_entries` - מדידות משקל יומיות
-- `measurements` - מדידות גוף נוספות
-- `meals` - רישום ארוחות (בהכנה)
-- `ai_conversations` - היסטוריית שיחות עם המאמן
+The project uses the following tables:
+- `profiles` - User profiles with goals and targets
+- `weight_entries` - Daily weight measurements
+- `measurements` - Additional body measurements
+- `meals` - Meal logging (in preparation)
+- `ai_conversations` - Conversation history with the coach
 
-## 🚀 פריסה לייצור
+## 🚀 Production Deployment
 
-### Vercel (מומלץ)
+### Vercel (Recommended)
 ```bash
 npm run build
 vercel --prod
@@ -160,22 +160,22 @@ docker build -t fitmind .
 docker run -p 3000:3000 fitmind
 ```
 
-## 🤝 תרומה לפרויקט
+## 🤝 Contributing
 
-נשמח לקבל תרומות! אנא:
-1. צור Fork של הפרויקט
-2. צור branch חדש לפיצ'ר (`git checkout -b feature/amazing-feature`)
-3. Commit השינויים (`git commit -m 'Add amazing feature'`)
-4. Push לבranch (`git push origin feature/amazing-feature`)
-5. פתח Pull Request
+We welcome contributions! Please:
+1. Fork the project
+2. Create a new feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📄 רישיון
+## 📄 License
 
-פרויקט זה מופץ תחת רישיון MIT. ראה קובץ `LICENSE` לפרטים נוספים.
+This project is distributed under the MIT License. See `LICENSE` file for more details.
 
-## 📞 יצירת קשר
+## 📞 Contact
 
-יצרתי בעיה או יש הצעה לשיפור? פתח Issue בגיטהאב או צור קשר:
+Have an issue or suggestion for improvement? Open an Issue on GitHub or contact:
 
 - GitHub: [@Harelzx](https://github.com/Harelzx)
 - Project Link: [https://github.com/Harelzx/FitMind](https://github.com/Harelzx/FitMind)
@@ -183,5 +183,5 @@ docker run -p 3000:3000 fitmind
 ---
 
 <div align="center">
-  <strong>בוצע עם ❤️ עבור הקהילה הישראלית</strong>
+  <strong>Made with ❤️ for the Israeli community</strong>
 </div>
