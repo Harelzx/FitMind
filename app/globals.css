@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262 80% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262 80% 50%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262 80% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 262 80% 50%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Hebrew RTL Layout Rules */
+@layer components {
+  /* Hebrew RTL form styling */
+  [dir="rtl"] label,
+  [dir="rtl"] .label-rtl {
+    @apply text-right block;
+  }
+  
+  [dir="rtl"] input,
+  [dir="rtl"] select,
+  [dir="rtl"] textarea,
+  [dir="rtl"] .input-rtl {
+    @apply text-right;
+  }
+
+  /* Fix Select component RTL alignment - Strong overrides */
+  [dir="rtl"] [data-radix-select-trigger] {
+    @apply text-right;
+    flex-direction: row-reverse !important;
+    justify-content: flex-start !important;
+    text-align: right !important;
+  }
+
+  [dir="rtl"] [data-radix-select-value] {
+    @apply text-right flex-1;
+    text-align: right !important;
+    direction: rtl !important;
+    justify-content: flex-start !important;
+  }
+
+  [dir="rtl"] [data-radix-select-icon] {
+    @apply ml-0 mr-2;
+    order: -1 !important;
+  }
+
+  [dir="rtl"] [data-radix-select-content] {
+    @apply text-right;
+    direction: rtl !important;
+  }
+
+  [dir="rtl"] [data-radix-select-item] {
+    @apply text-right;
+    text-align: right !important;
+    direction: rtl !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Additional Select RTL fixes with stronger specificity */
+  [dir="rtl"] .select-trigger,
+  [dir="rtl"] button[role="combobox"] {
+    @apply text-right;
+    flex-direction: row-reverse !important;
+    text-align: right !important;
+    justify-content: flex-start !important;
+  }
+
+  [dir="rtl"] .select-content,
+  [dir="rtl"] [role="listbox"] {
+    @apply text-right;
+    direction: rtl !important;
+  }
+
+  /* Placeholder and span text alignment */
+  [dir="rtl"] [data-placeholder],
+  [dir="rtl"] [data-radix-select-trigger] span {
+    @apply text-right;
+    text-align: right !important;
+    direction: rtl !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Force all Select text content to RTL */
+  [dir="rtl"] [data-radix-select-trigger] * {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Specific RTL classes for Select components */
+  .rtl-select {
+    text-align: right !important;
+    flex-direction: row-reverse !important;
+    justify-content: flex-start !important;
+  }
+
+  .rtl-placeholder {
+    text-align: right !important;
+    direction: rtl !important;
+    width: 100% !important;
+  }
+
+  .rtl-content {
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  .rtl-item {
+    text-align: right !important;
+    direction: rtl !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Hebrew form containers */
+  [dir="rtl"] .form-group {
+    @apply space-y-2 text-right;
+  }
+
+  /* Hebrew card content */
+  [dir="rtl"] .card-rtl {
+    @apply text-right;
+  }
+
+  /* Hebrew button alignment */
+  [dir="rtl"] .button-group {
+    @apply flex flex-row-reverse gap-2;
+  }
+
+  /* Chart text visibility fixes */
+  .recharts-cartesian-axis-tick-value,
+  .recharts-text {
+    fill: hsl(var(--foreground)) !important;
+    font-size: 12px !important;
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .recharts-yAxis .recharts-cartesian-axis-tick-value {
+    text-anchor: end !important;
+    direction: ltr !important;
+  }
+
+  .recharts-cartesian-axis-tick {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Ensure SVG text elements are visible */
+  svg text {
+    fill: hsl(var(--foreground)) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
