@@ -218,7 +218,24 @@ export function generateCoachSystemPrompt(context: CoachingContext): string {
 - משקל יעד: ${profile.target_weight} ק״ג
 - רמת פעילות: ${profile.activity_level}
 - יעד שבועי: ${profile.weekly_goal} ק״ג בשבוע
-- יעד קלוריות: ${profile.target_calories}
+- יעד קלוריות: ${(() => {
+    try {
+      const { calculateWeightLossPlan, calculateAge } = require('../calculations/weightLossAlgorithm')
+      const age = profile.age || calculateAge((profile as any).date_of_birth || '') || 25
+      const dynamicPlan = calculateWeightLossPlan({
+        currentWeight: profile.current_weight,
+        targetWeight: profile.target_weight,
+        height: profile.height,
+        age,
+        gender: profile.gender,
+        activityLevel: profile.activity_level,
+        pace: 'moderate'
+      })
+      return dynamicPlan.dailyCalories
+    } catch {
+      return profile.target_calories
+    }
+  })()}
 
 נתוני ההתקדמות:
 - סה״כ ירד במשקל: ${insights.totalWeightLoss.toFixed(1)} ק״ג

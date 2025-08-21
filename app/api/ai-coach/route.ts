@@ -107,8 +107,30 @@ function generateMockCoachResponse(message: string, context: any): string {
   }
   
   if (message.includes('תזונה') || message.includes('אוכל') || message.includes('דיאטה')) {
-    const calorieAdvice = profile.target_calories > 0 ? 
-      `היעד הקלורי שלך הוא ${profile.target_calories} קלוריות ביום. ` : ''
+    const dynamicCalories = (() => {
+      try {
+        const { calculateWeightLossPlan, calculateAge } = require('@/lib/calculations/weightLossAlgorithm')
+        const age = profile.age || calculateAge(profile.date_of_birth || '') || 25
+        const currentWeight = context.weightEntries.length > 0 ? 
+          context.weightEntries[context.weightEntries.length - 1]?.weight : profile.current_weight
+        
+        const dynamicPlan = calculateWeightLossPlan({
+          currentWeight: currentWeight,
+          targetWeight: profile.target_weight,
+          height: profile.height,
+          age,
+          gender: profile.gender,
+          activityLevel: profile.activity_level,
+          pace: 'moderate'
+        })
+        return dynamicPlan.dailyCalories
+      } catch {
+        return profile.target_calories
+      }
+    })()
+    
+    const calorieAdvice = dynamicCalories > 0 ? 
+      `היעד הקלורי שלך הוא ${dynamicCalories} קלוריות ביום. ` : ''
     
     return `${calorieAdvice}בהתבסס על הנתונים שלך (BMI ${context.insights.currentBMI.toFixed(1)}, יעד ${profile.weekly_goal} ק״ג בשבוع), אני ממליץ על:
     

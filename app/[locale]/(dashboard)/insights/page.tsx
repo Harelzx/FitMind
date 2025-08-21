@@ -23,7 +23,7 @@ import {
 } from 'lucide-react'
 import { WeightChart } from '@/components/charts/WeightChart'
 import { ProgressChart } from '@/components/charts/ProgressChart'
-import { calculateBMI, getBMICategory, calculateAge } from '@/lib/calculations/weightLossAlgorithm'
+import { calculateBMI, getBMICategory, calculateAge, calculateWeightLossPlan } from '@/lib/calculations/weightLossAlgorithm'
 import { analyzeWeightTrend, interpretWeightTrend, type TrendAnalysis } from '@/lib/calculations/weightTrends'
 import { format, subDays, subWeeks, differenceInDays } from 'date-fns'
 import { he } from 'date-fns/locale'
@@ -548,7 +548,26 @@ export default function InsightsPage() {
 
             <div className="flex items-center justify-between">
               <span>יעד קלוריות:</span>
-              <span className="font-bold">{profile.target_calories}</span>
+              <span className="font-bold">
+                {(() => {
+                  // Recalculate calories based on current weight
+                  try {
+                    const age = profile.age || calculateAge(profile.date_of_birth || '') || 25
+                    const dynamicPlan = calculateWeightLossPlan({
+                      currentWeight: currentWeight,
+                      targetWeight: profile.target_weight,
+                      height: profile.height,
+                      age,
+                      gender: profile.gender as 'male' | 'female',
+                      activityLevel: profile.activity_level as any,
+                      pace: 'moderate'
+                    })
+                    return dynamicPlan.dailyCalories
+                  } catch {
+                    return profile.target_calories
+                  }
+                })()}
+              </span>
             </div>
 
             <div className="flex items-center justify-between">
