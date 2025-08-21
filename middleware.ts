@@ -1,5 +1,6 @@
 import createMiddleware from 'next-intl/middleware'
-import { type NextRequest } from 'next/server'
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
 
 const intlMiddleware = createMiddleware({
   locales: ['he'],
@@ -8,9 +9,11 @@ const intlMiddleware = createMiddleware({
 })
 
 export default function middleware(request: NextRequest) {
+  // For now, just apply internationalization middleware
+  // Let the client-side auth handle route protection
   return intlMiddleware(request)
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|auth/callback).*)']
 }

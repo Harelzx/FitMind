@@ -148,7 +148,9 @@ export default function RegisterPage() {
           // Don't throw error - profile creation succeeded
         }
         
+        // Session will be automatically stored by Supabase client
         router.push('/dashboard')
+        router.refresh() // Ensure middleware runs
       }
     } catch (err: any) {
       setError(err.message)

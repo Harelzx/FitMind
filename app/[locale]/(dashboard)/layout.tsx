@@ -23,22 +23,44 @@ export default function DashboardLayout({
     const supabase = createClient()
     
     const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) {
+      try {
+        // Get current session first
+        const { data: { session } } = await supabase.auth.getSession()
+        
+        if (session?.user) {
+          setUser(session.user)
+          setLoading(false)
+          return
+        }
+
+        // If no session, try to refresh
+        const { data: { user }, error } = await supabase.auth.getUser()
+        
+        if (error || !user) {
+          // Clear any stale data and redirect to login
+          await supabase.auth.signOut()
+          router.push('/login')
+        } else {
+          setUser(user)
+        }
+      } catch (error) {
+        console.error('Auth check failed:', error)
         router.push('/login')
-      } else {
-        setUser(user)
+      } finally {
+        setLoading(false)
       }
-      setLoading(false)
     }
 
     checkUser()
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) {
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_OUT' || !session) {
+        setUser(null)
         router.push('/login')
-      } else {
+      } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
         setUser(session.user)
+        setLoading(false)
       }
     })
 

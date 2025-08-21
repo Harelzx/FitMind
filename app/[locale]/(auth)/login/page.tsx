@@ -23,17 +23,29 @@ export default function LoginPage() {
     setLoading(true)
     setError(null)
 
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
+    try {
+      const supabase = createClient()
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
 
-    if (error) {
-      setError(error.message)
+      if (error) {
+        setError(error.message)
+        setLoading(false)
+        return
+      }
+
+      if (data.user && data.session) {
+        // Wait a bit to ensure session is stored
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        
+        // Force redirect to dashboard
+        window.location.href = '/dashboard'
+      }
+    } catch (error) {
+      setError('שגיאה בהתחברות. נסה שוב.')
       setLoading(false)
-    } else {
-      router.push('/dashboard')
     }
   }
 
