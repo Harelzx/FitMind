@@ -38,3 +38,12 @@ next-env.d.ts
 
 # MCP configuration
 .mcp.json
+
+# Local Supabase development files
+/supabase/config.toml
+/supabase/migrations/
+/supabase/.branches/
+/supabase/.temp/
+
+# Project documentation
+CLAUDE.md
